@@ -7,6 +7,7 @@ import Loading from "../components/Loader";
 export default function Music() {
   const { data, error, isLoading } = useGetPopularWorldWideQuery();
   if (isLoading) return <Loading />;
+  if (error) return <h1>Error</h1>;
   window.scrollTo({
     top: 0,
     behavior: "smooth",

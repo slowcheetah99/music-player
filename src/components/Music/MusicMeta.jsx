@@ -51,7 +51,7 @@ export function MusicMeta({ music, i }) {
           <Play className="text-2xl" />
         </motion.div>
         <motion.img
-          src={music.images.coverarthq}
+          src={music?.images?.coverarthq}
           alt="user-profile"
           className="w-12 h-12 rounded-full"
           initial={{
