@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Space Grotesk", sans-serif !important;
+  color: "#1e1e1e";
+}
+.logo {
+  font-family: "Mystique" !important;
+}
