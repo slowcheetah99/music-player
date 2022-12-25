@@ -61,27 +61,27 @@ export default function PlayerItem({
   return (
     <div className="flex flex-col gap-y-3 h-fit w-1/5 items-center">
       <div className="w-full flex justify-between items-center">
-        <Shuffle className="text-xl text-primary cursor-pointer" />
-        <FF className="text-2xl rotate-180 text-primary cursor-pointer" />
+        <Shuffle className="text-xl text-secondary cursor-pointer" />
+        <FF className="text-2xl rotate-180 text-secondary cursor-pointer" />
         <div
-          className="flex justify-center items-center w-14 h-14 rounded-full bg-primary cursor-pointer"
+          className="flex justify-center items-center w-14 h-14 rounded-full bg-secondary cursor-pointer"
           onClick={play}
         >
           {isPlaying ? (
-            <Pause className="text-3xl text-center" />
+            <Pause className="text-3xl text-center text-primary2" />
           ) : (
-            <Play className="text-3xl text-center" />
+            <Play className="text-3xl text-center text-primary2" />
           )}
         </div>
-        <FF className="text-2xl text-primary cursor-pointer" />
-        <Repeat className="text-xl text-primary cursor-pointer" />
+        <FF className="text-2xl text-secondary cursor-pointer" />
+        <Repeat className="text-xl text-secondary cursor-pointer" />
       </div>
 
       <div className="flex w-[36rem] justify-between items-center">
-        <p className="text-primary text-sm">{secondsToHms(currentTime)}</p>
+        <p className="text-secondary text-sm">{secondsToHms(currentTime)}</p>
         <div className="container w-[30rem] relative">
           <div
-            className="w-[30rem] h-[4px] block absolute rounded-md top-1/2 -translate-y-1/2 z-50 select-none pointer-events-none bg-primary"
+            className="w-[30rem] h-[4px] block absolute rounded-md top-1/2 -translate-y-1/2 z-50 select-none pointer-events-none bg-accent"
             style={{ width: `${progressBarWidth}px` }}
           />
           <div className="progress-bar" />
@@ -93,13 +93,13 @@ export default function PlayerItem({
           <input
             type="range"
             step="0.01"
-            className="range w-full appearance-none bg-accent h-[4px] cursor-pointer opacity-0"
+            className="range w-full appearance-none bg-secondary h-[4px] cursor-pointer opacity-0"
             value={position}
             onChange={handleChange}
             ref={rangeRef}
           />
         </div>
-        <p className="text-primary text-sm">{secondsToHms(duration)}</p>
+        <p className="text-secondary text-sm">{secondsToHms(duration)}</p>
       </div>
     </div>
   );

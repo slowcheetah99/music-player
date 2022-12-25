@@ -5,7 +5,7 @@ export default function Header() {
   const [hover, setHover] = useState(false);
   return (
     <div
-      className="w-[75%] h-[40vh] top-0 left-[25%] fixed pointer-events-auto"
+      className="w-[80%] h-[40vh] top-0 left-[20%] fixed pointer-events-auto"
       style={{ backgroundImage: `url(${bgImg})`, backgroundSize: "cover" }}
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden backdrop-blur-[10px] bg-blur"></div>

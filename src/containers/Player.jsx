@@ -1,7 +1,9 @@
 import bgImg from "/src/assets/images/12.jpg";
 import { PlayerItem, VolumeControls } from "../components/Player";
 import { useState, useRef } from "react";
-import song from "/src/assets/songs/wonderwall.mp3";
+import { useSelector } from "react-redux";
+// import { currentlyPlaying } from "../features/currentSong";
+// import song from "/src/assets/songs/wonderwall.mp3";
 export default function Player() {
   //state to handle the custom player
   const [percentage, setPercentage] = useState(0);
@@ -11,6 +13,8 @@ export default function Player() {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
+
+  const { currentlyPlaying } = useSelector((state) => state.currentlyPlaying);
   function handleChange(e) {
     audioRef.current.currentTime =
       (audioRef.current.duration / 100) * e.target.value;
@@ -44,24 +48,36 @@ export default function Player() {
     setCurrentTime(time.toFixed(2));
   }
   return (
-    <div className="fixed bottom-0 left-0 w-full h-28 pointer-events-auto">
+    <div
+      className={`fixed bottom-0 transition-all ${
+        Object.keys(currentlyPlaying).length !== 0
+          ? " translate-y-0 "
+          : " translate-y-full "
+      } left-0 w-full h-28 pointer-events-auto`}
+    >
       <img
-        src={bgImg}
+        src={currentlyPlaying?.images?.coverarthq}
         alt="player image"
         className="w-full h-full object-cover object-center"
       />
       <div className="absolute top-0 left-0 w-full h-full backdrop-blur-[20px] bg-blur2" />
       <div className="flex justify-between items-center z-50 absolute top-1/2 -translate-y-1/2 left-0 w-full px-8">
         <div className="flex gap-x-4 items-center w-fit">
-          <img
-            src={bgImg}
-            alt="artist image"
-            className="w-20 h-20 rounded-full object-cover object-center"
-          />
-          <div>
-            <p className="text-base font-bold text-primary">Artist Song</p>
-            <p className="text-sm font-medium text-primary">Artist Name</p>
-          </div>
+          <>
+            <img
+              src={currentlyPlaying?.images?.coverarthq}
+              alt="artist image"
+              className="w-20 h-20 rounded-full object-cover object-center"
+            />
+            <div>
+              <p className="text-base font-bold text-secondary">
+                {currentlyPlaying.title}
+              </p>
+              <p className="text-sm font-medium text-secondary">
+                {currentlyPlaying.subtitle}
+              </p>
+            </div>
+          </>
         </div>
         <PlayerItem
           percentage={percentage}
@@ -72,7 +88,7 @@ export default function Player() {
           currentTime={currentTime}
         />
         <audio
-          src={song}
+          src={currentlyPlaying?.hub?.actions[1]?.uri}
           ref={audioRef}
           onLoadedData={(e) => {
             setDuration(e.currentTarget.duration);

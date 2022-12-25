@@ -2,10 +2,13 @@ import { useState } from "react";
 import { PlayerItem } from "../Player";
 import { useNavigate } from "react-router-dom";
 import { BsPlay as Play, BsPause as Pause } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentlyPlaying } from "../../features/currentSong";
 import { motion } from "framer-motion";
 export function MusicMeta({ music, i }) {
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleArtist() {
     navigate(`/artist/${music.artists[0].adamid}`, {
@@ -14,10 +17,10 @@ export function MusicMeta({ music, i }) {
   }
   return (
     <div
-      className={`flex justify-between items-center px-6 py-2 border-b-2 ${
+      className={`flex justify-between items-center px-6 rounded-xl py-2 ${
         hover
-          ? " bg-accent/20 pl-4 text-accent border-transparent"
-          : " text-secondary transition-all border-secondary/50"
+          ? " bg-accent pl-4 text-primary2"
+          : " bg-primary text-secondary transition-all"
       }`}
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
@@ -48,7 +51,10 @@ export function MusicMeta({ music, i }) {
           className="flex gap-x-4 items-center mr-8"
         >
           <p className="font-medium">{i + 1}</p>
-          <Play className="text-2xl" />
+          <Play
+            className="text-2xl cursor-pointer"
+            onClick={() => dispatch(selectCurrentlyPlaying(music))}
+          />
         </motion.div>
         <motion.img
           src={music?.images?.coverarthq}

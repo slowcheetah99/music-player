@@ -29,7 +29,7 @@ const svgAnimate = {
   },
 };
 
-export default function Guitarist() {
+export default function Loader() {
   return (
     <div className="w-full h-full">
       <motion.svg

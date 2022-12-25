@@ -38,14 +38,14 @@ export default function VolumeControls({ handleVolume, volume, audioRef }) {
         onClick={handleMute}
       >
         {!isMuted ? (
-          <Mute className="text-primary text-[1.75rem]" />
+          <Mute className="text-secondary text-[1.75rem]" />
         ) : (
-          <Up className="text-primary text-[1.5rem]" />
+          <Up className="text-secondary text-[1.5rem]" />
         )}
       </div>
       <div className="container w-[80%] relative">
         <div
-          className="h-[4px] w-full block absolute rounded-md top-1/2 -translate-y-1/2 z-50 select-none pointer-events-none bg-white"
+          className="h-[4px] w-full block absolute rounded-md top-1/2 -translate-y-1/2 z-50 select-none pointer-events-none bg-accent"
           style={{ width: `${progressBarWidth}px` }}
         />
         <div className="progress-bar" />
@@ -57,7 +57,7 @@ export default function VolumeControls({ handleVolume, volume, audioRef }) {
         <input
           type="range"
           step="0.01"
-          className="range w-full appearance-none bg-primary h-[4px] cursor-pointer opacity-0"
+          className="range w-full appearance-none bg-accent h-[4px] cursor-pointer opacity-0"
           value={position}
           onChange={handleVolume}
           ref={rangeRef}

@@ -20,7 +20,7 @@ export default function PlaylistEl({ genre, i }) {
       i={i}
       className={`flex gap-x-2 items-center py-4 cursor-pointer font-medium rounded-lg ${
         hover
-          ? " bg-accent/20 pl-4 text-accent"
+          ? " bg-accent pl-4 text-primary"
           : " text-secondary transition-all"
       }`}
       onMouseOver={() => setHover(true)}

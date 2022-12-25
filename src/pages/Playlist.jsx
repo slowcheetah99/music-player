@@ -14,7 +14,7 @@ export default function Playlist() {
   });
   return (
     <Layout>
-      <div className="bg-primary w-[75%] min-h-[60vh] -z-10 py-10 -mt-[85vh] ml-[25%] flex flex-col gap-y-4 pb-4 px-10 -mt-[1050px]">
+      <div className="bg-primary2 w-[80%] min-h-[60vh] -z-10 py-10 ml-[20%] flex flex-col gap-y-4 pb-4 px-10 mt-[-1050px]">
         {data.map((item, i) => (
           <MusicMeta key={i} i={i} music={item} />
         ))}
