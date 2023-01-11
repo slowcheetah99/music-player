@@ -10,6 +10,13 @@ export function MusicMeta({ music, i }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const song = {
+    title: music?.title,
+    artist: music?.subtitle,
+    url: music?.hub?.actions?.[1]?.uri,
+    coverart: music?.images?.coverarthq,
+  };
+
   function handleArtist() {
     navigate(`/artist/${music.artists[0].adamid}`, {
       state: { artist: music.artists[0].adamid },
@@ -53,7 +60,9 @@ export function MusicMeta({ music, i }) {
           <p className="font-medium">{i + 1}</p>
           <Play
             className="text-2xl cursor-pointer"
-            onClick={() => dispatch(selectCurrentlyPlaying(music))}
+            onClick={() => {
+              dispatch(selectCurrentlyPlaying(song));
+            }}
           />
         </motion.div>
         <motion.img

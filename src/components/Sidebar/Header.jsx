@@ -12,7 +12,7 @@ export default function SidebarHeader() {
     {
       icon: <Music />,
       label: "My Music",
-      path: "/",
+      path: "/music",
       active: true,
     },
     {
@@ -31,7 +31,7 @@ export default function SidebarHeader() {
 
   return (
     <div className="w-full">
-      <Link to="/">
+      <Link to="/music">
         <p className="logo text-center py-4 text-accent text-lg tracking-widest border-b-2 border-secondary/40">
           CommaNoise
         </p>

@@ -2,7 +2,7 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 
 const apiKey = import.meta.env.VITE_API_KEY;
-const baseUrl = "https://shazam-core.p.rapidapi.com/v1";
+const baseUrl = "https://shazam-core.p.rapidapi.com/";
 
 export const shazamCore = createApi({
   reducerPath: "shazamCore",
@@ -16,12 +16,12 @@ export const shazamCore = createApi({
   endpoints: (builder) => ({
     //world chart
     getPopularWorldWide: builder.query({
-      query: () => "/charts/world",
+      query: () => "v1/charts/world",
     }),
 
     //get genres
     getGenres: builder.query({
-      query: () => "/frame/cities",
+      query: () => "v1/frame/cities",
     }),
     //chart by genre
 
@@ -31,7 +31,7 @@ export const shazamCore = createApi({
           genre = "POP";
         }
         return {
-          url: "charts/genre-world",
+          url: "v1/charts/genre-world",
           params: {
             genre_code: genre,
           },
@@ -42,7 +42,7 @@ export const shazamCore = createApi({
     getArtist: builder.query({
       query: (artist) => {
         return {
-          url: "artists/details",
+          url: "v2/artists/details",
           params: {
             artist_id: artist,
           },

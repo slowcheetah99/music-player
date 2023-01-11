@@ -1,10 +1,11 @@
 import bgImg from "/src/assets/images/12.jpg";
+import { motion } from "framer-motion";
 import { PlayerItem, VolumeControls } from "../components/Player";
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 // import { currentlyPlaying } from "../features/currentSong";
 // import song from "/src/assets/songs/wonderwall.mp3";
-export default function Player() {
+export default function Player({ setShow }) {
   //state to handle the custom player
   const [percentage, setPercentage] = useState(0);
   //volume to start at 50% so that audio is not muted when song is played
@@ -48,15 +49,15 @@ export default function Player() {
     setCurrentTime(time.toFixed(2));
   }
   return (
-    <div
-      className={`fixed bottom-0 transition-all ${
-        Object.keys(currentlyPlaying).length !== 0
-          ? " translate-y-0 "
-          : " translate-y-full "
-      } left-0 w-full h-28 pointer-events-auto`}
+    <motion.div
+      className={`fixed bottom-0 transition-all left-0 w-full h-28 pointer-events-auto z-50`}
+      animate={{
+        y: Object.keys(currentlyPlaying).length !== 0 ? "0%" : "100%",
+      }}
+      transition={{ duration: 0.75, ease: [0.43, 0.13, 0.23, 0.96] }}
     >
       <img
-        src={currentlyPlaying?.images?.coverarthq}
+        src={currentlyPlaying?.coverart}
         alt="player image"
         className="w-full h-full object-cover object-center"
       />
@@ -65,7 +66,7 @@ export default function Player() {
         <div className="flex gap-x-4 items-center w-fit">
           <>
             <img
-              src={currentlyPlaying?.images?.coverarthq}
+              src={currentlyPlaying?.coverart}
               alt="artist image"
               className="w-20 h-20 rounded-full object-cover object-center"
             />
@@ -74,7 +75,7 @@ export default function Player() {
                 {currentlyPlaying.title}
               </p>
               <p className="text-sm font-medium text-secondary">
-                {currentlyPlaying.subtitle}
+                {currentlyPlaying.artist}
               </p>
             </div>
           </>
@@ -88,7 +89,7 @@ export default function Player() {
           currentTime={currentTime}
         />
         <audio
-          src={currentlyPlaying?.hub?.actions[1]?.uri}
+          src={currentlyPlaying?.url}
           ref={audioRef}
           onLoadedData={(e) => {
             setDuration(e.currentTarget.duration);
@@ -101,6 +102,11 @@ export default function Player() {
           audioRef={audioRef}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
+
+//song url
+//song title
+//song subtitle
+//coverart
